@@ -20,3 +20,19 @@ select nome from 4CTL_clienti where nome LIKE '%a'
 
 -- Elenco dei modelli ordinati dal prezzo più elevato al più basso. 
 select nome, prezzo_listino from 4CTL_modelli_prodotto ORDER BY prezzo_listino DESC
+
+-- Visualizzazione delle categorie di prodotti disponibili senza ripetizioni.
+select DISTINCT categoria from 4CTL_modelli_prodotto
+
+-- estrazioner dei primi 10 prodotti arrivati in magazzino in ordine cronologico
+SELECT id_prodotto, data_arrivo
+FROM `4CTL_prodotti`
+ORDER BY data_arrivo ASC
+limit 10
+
+-- Ricerca di tutti gli ordini effettuati nel mese di giugno 2024.
+SELECT * FROM `4CTL_ordini` where month (data_ordine)='6'
+
+-- Elenco dei codici seriali in magazzino associati al nome del relativo modello. 
+select cod_seriale, nome from 4CTL_prodotti, 4CTL_modelli_prodotto
+where 4CTL_prodotti.id_modello= 4CTL_modelli_prodotto.id_modello
